@@ -52,6 +52,28 @@ pipeline {
                 sh "pwd;cd terraform/ ; /opt/homebrew/bin/terraform apply -input=false tfplan"
             }
         }
+
+        stage('Destroy') {
+           when {
+               not {
+                   equals expected: true, actual: params.autoApprove
+               }
+           }
+
+           steps {
+               script {
+                    def plan = readFile 'terraform/tfplan.txt'
+                    input message: "Do you want to destroy the plan?",
+                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+               }
+           }
+       }
+
+        stage('Apply') {
+            steps {
+                sh "pwd;cd terraform/ ; /opt/homebrew/bin/terraform destroy -input=false tfplan"
+            }
+        }
     }
 
   }
