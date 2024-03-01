@@ -71,7 +71,7 @@ pipeline {
 
         stage('Destroy') {
             steps {
-                sh "pwd;cd terraform/ ; /opt/homebrew/bin/terraform destroy"
+                sh "pwd;cd terraform/ ; /opt/homebrew/bin/terraform destroy --auto-approve"
             }
         }
     }
