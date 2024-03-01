@@ -15,7 +15,9 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/KramaiahGit/terraform-jenkins.git"
+                            git branch: 'master',
+                            credentialsId: '05b8c525-f363-49a5-a3b4-5068d3f4e838',
+                            url: 'ssh://git@github.com:KramaiahGit/terraform-jenkins.git'
                         }
                     }
                 }
