@@ -53,7 +53,7 @@ pipeline {
             }
         }
 
-        stage('Destroy') {
+        stage('Destroy Approval') {
            when {
                not {
                    equals expected: true, actual: params.autoApprove
