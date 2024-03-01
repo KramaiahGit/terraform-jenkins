@@ -71,7 +71,7 @@ pipeline {
 
         stage('Destroy') {
             steps {
-                sh "pwd;cd terraform/ ; /opt/homebrew/bin/terraform destroy -input=false tfplan"
+                sh "pwd;cd terraform/ ; /opt/homebrew/bin/terraform destroy"
             }
         }
     }
